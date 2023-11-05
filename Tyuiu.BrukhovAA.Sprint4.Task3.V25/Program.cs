@@ -4,54 +4,46 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using Tyuiu.BrukhovAA.Sprint4.Task2.V1.Lib;
+using Tyuiu.BrukhovAA.Sprint4.Task3.V25.Lib;
 
-namespace Tyuiu.BrukhovAA.Sprint4.Task2.V1
+namespace Tyuiu.BrukhovAA.Sprint4.Task3.V25
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Random rnd = new Random();
             DataService ds = new DataService();
 
             Console.Title = "Спринт #4 | Выполнил: Брюхов А. А. | АСОиУБ-23-1";
             Console.WriteLine("**************************************************************************");
             Console.WriteLine("* Спринт #4                                                              *");
-            Console.WriteLine("* Тема: Одномерные массивы. (генератор случайных чисел)                  *");
-            Console.WriteLine("* Задание #2                                                             *");
-            Console.WriteLine("* Вариант #1                                                             *");
+            Console.WriteLine("* Тема: Двумерные массивы. (статический ввод)                            *");
+            Console.WriteLine("* Задание #3                                                             *");
+            Console.WriteLine("* Вариант #25                                                            *");
             Console.WriteLine("* Выполнил: Брюхов Алексей Андреевич | АСОиУБ-23-1                       *");
             Console.WriteLine("**************************************************************************");
             Console.WriteLine("* УСЛОВИЕ:                                                               *");
-            Console.WriteLine("* Дан одномерный целочисленный массив на 10 элементов заполненный        *");
-            Console.WriteLine("* случайными в диапазоне от 1 до 9 подсчитать произведение               *");
-            Console.WriteLine("* четных элементов массива.                                              *");
+            Console.WriteLine("* Дан двумерный целочисленный массив 5 на 5 элементов, заполненный       *");
+            Console.WriteLine("* статическими значениями в диапазоне от 2 до 7. Найдите произведение    *");
+            Console.WriteLine("* элементов в четвертом столбце массива.                                 *");
             Console.WriteLine("**************************************************************************");
             Console.WriteLine("* ИСХОДНЫЕ ДАННЫЕ:                                                       *");
             Console.WriteLine("**************************************************************************");
 
-            int len;
-            Console.WriteLine("Введите длину массива: ");
-            Console.WriteLine();
-            len = Convert.ToInt32(Console.ReadLine());
-            int[] array = new int[len];
+            int[,] array = new int[5,5] { { 7, 3, 5, 3, 6 }, { 4, 6, 2, 5, 7 }, { 2, 3, 3, 3, 5 }, { 2, 7, 7, 6, 2 }, { 6, 6, 4, 3, 6 } };
 
+            int rows = array.GetUpperBound(0) + 1;
+            int columns = array.Length / rows;
 
-            for (int i = 0; i <= len - 1; i++)
+            for (int i = 0; i < rows; i++)
             {
-                array[i] = rnd.Next(1, 9);
+                for (int j = 0; j < columns; j++)
+                {
+                    Console.Write($"{array[i, j]}  ");
+                }
+                Console.WriteLine();
             }
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine("Массив: ");
 
-            for (int i = 0; i <= len - 1; i++)
-            {
-                Console.Write(array[i] + "\t");
-            }
-            Console.WriteLine();
-            Console.WriteLine();
 
             Console.WriteLine("**************************************************************************");
             Console.WriteLine("* РЕЗУЛЬТАТ:                                                             *");
@@ -59,7 +51,7 @@ namespace Tyuiu.BrukhovAA.Sprint4.Task2.V1
 
             int res = ds.Calculate(array);
 
-            Console.WriteLine(res);
+            Console.WriteLine("Произведение элементов в четвертом столбце массива = " + res);
             Console.ReadKey();
         }
     }
